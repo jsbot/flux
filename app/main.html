@@ -1,0 +1,25 @@
+<h1>Catalog</h1>
+
+<table ng-controller="CatalogControllerSecond as catalog">
+    <tr ng-repeat="item in catalog.catalogItems">
+        <td>{{item.title}}</td>
+        <td>{{item.cost}}</td>
+        <td>
+            <button ng-click="catalog.addToCard(item)">Add to Cart</button>
+        </td>
+    </tr>
+</table>
+
+</table>
+
+<h1>Cart</h1>
+<table ng-controller="CartCtrl as cart">
+    {{CartCtrl}}
+    <tr ng-repeat="item in cart.items track by $id(item)">
+        <td>{{item.catalogItem.title}}</td>
+        <td>{{item.qty}}</td>
+        <td>
+            <button ng-click="cart.removeItem(item)">x</button>
+        </td>
+    </tr>
+</table>
