@@ -28,6 +28,6 @@ class CartStore extends EventEmitter {
     }
 
     emitChange():void {
-        this.emit("change");
+        this.emit("change",{});
     }
 }

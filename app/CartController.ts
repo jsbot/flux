@@ -4,7 +4,7 @@ class CartCtrl {
 
         this.resetItems();
 
-        cartStore.addListener(() => this.resetItems());
+        cartStore.addListener('change',() => this.resetItems());
     }
 
     resetItems() {

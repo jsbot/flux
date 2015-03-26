@@ -5,14 +5,12 @@ class EventEmitter {
         this.listeners = [];
     }
 
-    emit(event): void{
-        this.listeners.forEach((listener) => {
-            listener(event);
-        });
+    emit(event, data): void{
+        this.listeners[event](data);
     }
 
-    addListener(listener) : any{
-        this.listeners.push(listener);
-        return this.listeners.length - 1;
+    addListener(name, listener) : any{
+        this.listeners[name] = listener;
+        return this.listeners[name];
     }
 }

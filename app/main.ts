@@ -32,13 +32,13 @@ var REMOVE_ITEM = "REMOVE_ITEM";
 app.factory("cartActions", ['dispatcher', function (dispatcher) {
     return {
         addItem(item) {
-            dispatcher.emit({
+            dispatcher.emit('cartChange',{
                 actionType: ADD_ITEM,
                 item: item
             })
         },
         removeItem(item) {
-            dispatcher.emit({
+            dispatcher.emit('cartChange',{
                 actionType: REMOVE_ITEM,
                 item: item
             })
@@ -56,7 +56,7 @@ app.service("dispatcher", EventEmitter);
 
 app.factory("cartStore", ['dispatcher',function (dispatcher) {
     var cartStore = new CartStore();
-    dispatcher.addListener(function (action) {
+    dispatcher.addListener('cartChange',function (action) {
         switch(action.actionType){
             case ADD_ITEM:
                 cartStore.addItem(action.item);
@@ -73,7 +73,7 @@ app.factory("cartStore", ['dispatcher',function (dispatcher) {
 
     //expose only the public interface
     return {
-       addListener: (l) => cartStore.addListener(l),
+       addListener: (n, l) => cartStore.addListener(n, l),
         cartItems: () => cartStore.cartItems
     };
 }]);
